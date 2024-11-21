@@ -157,9 +157,10 @@ void AdoptPlant()
     }
 
     // Take user input
-    int adoptChoice = int.Parse(Console.ReadLine().Trim());
+    int adoptChoice = int.Parse(Console.ReadLine().Trim()) - 1;
 
     // Change Sold property of selected plant to true
-    plants[adoptChoice - 1].Sold = true;
-    Console.WriteLine($"{plants[adoptChoice - 1].Species} adopted!");
+    plants[adoptChoice].Sold = true;
+    Console.Clear();
+    Console.WriteLine($"{plants[adoptChoice].Species} adopted!");
 }    
