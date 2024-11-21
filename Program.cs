@@ -129,7 +129,7 @@ where a plant rated 1 needs the least amount of light and a plant rated 5 needs 
     Console.WriteLine("-- Please enter the ZIP code the plant you are posting for adoption is available in:");
     string zipResponse = Console.ReadLine();
 
-    // Create object to add to Plants list
+    // Create and add new object to Plants list
     Plant plantToPost = new Plant()
     {
         Species = speciesResponse,
@@ -139,10 +139,7 @@ where a plant rated 1 needs the least amount of light and a plant rated 5 needs 
         ZIP = zipResponse,
         Sold = false
     };
-
-    // Add new plant object to Plants list
     plants.Add(plantToPost);
-
     Console.Clear();
-    Console.WriteLine("New plant posted for adoption!");
+    Console.WriteLine($"New {plantToPost.Species} posted for adoption!");
 }
