@@ -79,7 +79,7 @@ while (choice != "0")
     }
     else if (choice == "3")
     {
-        throw new NotImplementedException("Adopt a plant");
+        AdoptPlant();
     }
     else if (choice == "4")
     {
@@ -143,3 +143,23 @@ where a plant rated 1 needs the least amount of light and a plant rated 5 needs 
     Console.Clear();
     Console.WriteLine($"New {plantToPost.Species} posted for adoption!");
 }
+
+void AdoptPlant()
+{
+    // List available plants filtered by Sold == false
+    Console.WriteLine("Please select a plant to adopt");
+    for (int i = 0; i < plants.Count; i++)
+    {
+        if (plants[i].Sold == false)
+        {
+            Console.WriteLine($"{i+1}. {plants[i].Species}, available for {plants[i].AskingPrice} in {plants[i].City}.");
+        }
+    }
+
+    // Take user input
+    int adoptChoice = int.Parse(Console.ReadLine().Trim());
+
+    // Change Sold property of selected plant to true
+    plants[adoptChoice - 1].Sold = true;
+    Console.WriteLine($"{plants[adoptChoice - 1].Species} adopted!");
+}    
