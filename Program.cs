@@ -50,7 +50,17 @@ List<Plant> plants = new List<Plant>()
 
 // Set plant of the day index
 Random random = new Random();
-int indexPOTD = random.Next(0, plants.Count);
+bool validIndex = false;
+int indexPOTD = 0;
+while (!validIndex)
+{
+    int testIndex = random.Next(0, plants.Count);
+    if (plants[testIndex].Sold == false)
+    {
+        indexPOTD = testIndex;
+        validIndex = true;
+    }
+}
 
 Console.WriteLine(@"Welcome to ExtraVert FlowerShop
 AKA that one place");
@@ -195,5 +205,5 @@ void DelistPlant()
 void ShowPlantOfTheDay()
 {
     Console.Clear();
-    Console.WriteLine($"{indexPOTD+1}. {plants[indexPOTD].Species}, available for {plants[indexPOTD].AskingPrice} in {plants[indexPOTD].City}.");
+    Console.WriteLine($"{plants[indexPOTD].Species} is available for {plants[indexPOTD].AskingPrice} in {plants[indexPOTD].City}!");
 }
