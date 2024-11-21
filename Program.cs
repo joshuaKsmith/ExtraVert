@@ -48,6 +48,10 @@ List<Plant> plants = new List<Plant>()
     },
 };
 
+// Set plant of the day index
+Random random = new Random();
+int indexPOTD = random.Next(0, plants.Count);
+
 Console.WriteLine(@"Welcome to ExtraVert FlowerShop
 AKA that one place");
 
@@ -60,7 +64,8 @@ while (choice != "0")
         1. Display all plants
         2. Post a plant to be adopted
         3. Adopt a plant
-        4. Delist a plant"
+        4. Delist a plant
+        5. Plant of the day"
     );
 
     choice = Console.ReadLine();
@@ -84,6 +89,10 @@ while (choice != "0")
     else if (choice == "4")
     {
         DelistPlant();
+    }
+    else if (choice == "5")
+    {
+        ShowPlantOfTheDay();
     }
     else 
     {
@@ -181,4 +190,10 @@ void DelistPlant()
     plants.RemoveAt(delistChoice);
     Console.Clear();
     Console.WriteLine($"{plants[delistChoice].Species} delisted!");
+}
+
+void ShowPlantOfTheDay()
+{
+    Console.Clear();
+    Console.WriteLine($"{indexPOTD+1}. {plants[indexPOTD].Species}, available for {plants[indexPOTD].AskingPrice} in {plants[indexPOTD].City}.");
 }
