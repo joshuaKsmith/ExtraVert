@@ -75,7 +75,8 @@ while (choice != "0")
         2. Post a plant to be adopted
         3. Adopt a plant
         4. Delist a plant
-        5. Plant of the day"
+        5. Plant of the day
+        6. Search plants by Light Needs"
     );
 
     choice = Console.ReadLine();
@@ -103,6 +104,10 @@ while (choice != "0")
     else if (choice == "5")
     {
         ShowPlantOfTheDay();
+    }
+    else if (choice == "6")
+    {
+        SearchPlantsByLightNeeds();
     }
     else 
     {
@@ -165,6 +170,7 @@ where a plant rated 1 needs the least amount of light and a plant rated 5 needs 
 
 void AdoptPlant()
 {
+    // NEED TO VALIDATE THIS INPUT
     // List available plants filtered by Sold == false
     Console.WriteLine("Please select a plant to adopt");
     for (int i = 0; i < plants.Count; i++)
@@ -186,6 +192,7 @@ void AdoptPlant()
 
 void DelistPlant()
 {
+    // NEED TO VALIDATE THIS INPUT
     // List all plants
     Console.WriteLine("Please select a plant to delist");
     for (int i = 0; i < plants.Count; i++)
@@ -205,5 +212,31 @@ void DelistPlant()
 void ShowPlantOfTheDay()
 {
     Console.Clear();
-    Console.WriteLine($"{plants[indexPOTD].Species} is available for {plants[indexPOTD].AskingPrice} in {plants[indexPOTD].City}!");
+    Console.WriteLine($"{plants[indexPOTD].Species} {(plants[indexPOTD].Sold ? "was sold" : "is available")} for {plants[indexPOTD].AskingPrice} in {plants[indexPOTD].City}!");
+}
+
+void SearchPlantsByLightNeeds()
+{
+    // NEED TO VALIDATE THIS INPUT
+    // Take user input and store selection between 1 and 5
+    Console.WriteLine("Please select a number between 1 and 5");
+    int lightFilterNum = int.Parse(Console.ReadLine());
+
+    // Filter into new list of plants with lighting needs at or below the user selection
+    List<Plant> filteredPlants = new List<Plant>();
+    foreach (Plant plant in plants)
+    {
+        if (plant.LightNeeds <= lightFilterNum)
+        {
+            filteredPlants.Add(plant);
+        }
+    }
+
+    // Display the new list of plants filtered by lightning needs
+    Console.Clear();
+    Console.WriteLine("Plants within your selected range of Light Needs:");
+    for (int i = 0; i < filteredPlants.Count; i++)
+    {
+        Console.WriteLine($"{plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for {plants[i].AskingPrice} dollars");
+    }    
 }
