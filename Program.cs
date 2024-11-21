@@ -64,6 +64,7 @@ while (choice != "0")
     );
 
     choice = Console.ReadLine();
+    Console.Clear();
     if (choice == "0")
     {
         Console.WriteLine("Goodbye!");
