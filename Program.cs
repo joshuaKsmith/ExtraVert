@@ -55,7 +55,7 @@ AKA that one place");
 string choice = null;
 while (choice != "0")
 {
-    Console.WriteLine(@"Choose an option:
+    Console.WriteLine(@"-- Choose an option:
         0. Exit
         1. Display all plants
         2. Post a plant to be adopted
@@ -75,7 +75,7 @@ while (choice != "0")
     }
     else if (choice == "2")
     {
-        throw new NotImplementedException("Post a plant to be adopted");
+        PostPlantForAdoption();
     }
     else if (choice == "3")
     {
@@ -98,4 +98,51 @@ void ListPlants()
     {
         Console.WriteLine($"{i + 1}. {plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for {plants[i].AskingPrice} dollars");
     }
+}
+
+void PostPlantForAdoption()
+{
+    // Ask for species
+    Console.WriteLine("-- Please enter the species of plant you are posting for adoption:");
+    string speciesResponse = Console.ReadLine();
+
+    // Ask for light needs
+    Console.Clear();
+    Console.WriteLine(@"We measure the Light Needs of a plant on a scale from 1 to 5,
+where a plant rated 1 needs the least amount of light and a plant rated 5 needs the most.
+-- Please enter a Light Needs number from 1 to 5 for the plant you are posting for adoption:"
+    );
+    int lightResponse = int.Parse(Console.ReadLine().Trim());
+
+    // Ask for asking price
+    Console.Clear();
+    Console.WriteLine("-- Please enter the asking price of the plant you are posting for adoption:");
+    decimal priceResponse = decimal.Parse(Console.ReadLine().Trim());
+
+    // Ask for city
+    Console.Clear();
+    Console.WriteLine("-- Please enter the City the plant you are posting for adoption is available in:");
+    string cityResponse = Console.ReadLine();
+
+    // Ask for ZIP
+    Console.Clear();
+    Console.WriteLine("-- Please enter the ZIP code the plant you are posting for adoption is available in:");
+    string zipResponse = Console.ReadLine();
+
+    // Create object to add to Plants list
+    Plant plantToPost = new Plant()
+    {
+        Species = speciesResponse,
+        LightNeeds = lightResponse,
+        AskingPrice = priceResponse,
+        City = cityResponse,
+        ZIP = zipResponse,
+        Sold = false
+    };
+
+    // Add new plant object to Plants list
+    plants.Add(plantToPost);
+
+    Console.Clear();
+    Console.WriteLine("New plant posted for adoption!");
 }
