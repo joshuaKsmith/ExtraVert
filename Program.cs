@@ -83,7 +83,7 @@ while (choice != "0")
     }
     else if (choice == "4")
     {
-        throw new NotImplementedException("Delist a plant");
+        DelistPlant();
     }
     else 
     {
@@ -156,11 +156,29 @@ void AdoptPlant()
         }
     }
 
-    // Take user input
+    // Take user input and store selected index
     int adoptChoice = int.Parse(Console.ReadLine().Trim()) - 1;
 
     // Change Sold property of selected plant to true
     plants[adoptChoice].Sold = true;
     Console.Clear();
     Console.WriteLine($"{plants[adoptChoice].Species} adopted!");
-}    
+}
+
+void DelistPlant()
+{
+    // List all plants
+    Console.WriteLine("Please select a plant to delist");
+    for (int i = 0; i < plants.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {plants[i].Species} in {plants[i].City}.");
+    }
+
+    // Take user input and store selected index
+    int delistChoice = int.Parse(Console.ReadLine().Trim()) - 1;
+
+    // Remove selected plant from plants list with RemoveAt method
+    plants.RemoveAt(delistChoice);
+    Console.Clear();
+    Console.WriteLine($"{plants[delistChoice].Species} delisted!");
+}
