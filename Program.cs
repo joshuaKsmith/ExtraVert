@@ -76,7 +76,8 @@ while (choice != "0")
         3. Adopt a plant
         4. Delist a plant
         5. Plant of the day
-        6. Search plants by Light Needs"
+        6. Search plants by Light Needs
+        7. Statistics"
     );
 
     choice = Console.ReadLine();
@@ -108,6 +109,10 @@ while (choice != "0")
     else if (choice == "6")
     {
         SearchPlantsByLightNeeds();
+    }
+    else if (choice == "7")
+    {
+        AppStatistics();
     }
     else 
     {
@@ -256,4 +261,11 @@ void SearchPlantsByLightNeeds()
     {
         Console.WriteLine($"{plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for {plants[i].AskingPrice} dollars");
     }    
+}
+
+void AppStatistics()
+{
+   throw new NotImplementedException();
+
+   
 }
