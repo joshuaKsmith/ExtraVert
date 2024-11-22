@@ -192,7 +192,7 @@ void AdoptPlant()
     Console.WriteLine("Please select a plant to adopt");
     for (int i = 0; i < plants.Count; i++)
     {
-        if (plants[i].Sold == false)
+        if (plants[i].Sold == false && plants[i].AvailableUntil > DateTime.Now)
         {
             Console.WriteLine($"{i+1}. {plants[i].Species}, available for {plants[i].AskingPrice} in {plants[i].City}.");
         }
