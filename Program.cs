@@ -128,7 +128,7 @@ void PostPlantForAdoption()
 {
     // Ask for species
     Console.WriteLine("-- Please enter the species of plant you are posting for adoption:");
-    string speciesResponse = Console.ReadLine();
+    string speciesRes = Console.ReadLine();
 
     // Ask for light needs
     Console.Clear();
@@ -136,32 +136,49 @@ void PostPlantForAdoption()
 where a plant rated 1 needs the least amount of light and a plant rated 5 needs the most.
 -- Please enter a Light Needs number from 1 to 5 for the plant you are posting for adoption:"
     );
-    int lightResponse = int.Parse(Console.ReadLine().Trim());
+    int lightRes = int.Parse(Console.ReadLine().Trim());
 
     // Ask for asking price
     Console.Clear();
     Console.WriteLine("-- Please enter the asking price of the plant you are posting for adoption:");
-    decimal priceResponse = decimal.Parse(Console.ReadLine().Trim());
+    decimal priceRes = decimal.Parse(Console.ReadLine().Trim());
 
     // Ask for city
     Console.Clear();
     Console.WriteLine("-- Please enter the City the plant you are posting for adoption is available in:");
-    string cityResponse = Console.ReadLine();
+    string cityRes = Console.ReadLine();
 
     // Ask for ZIP
     Console.Clear();
-    Console.WriteLine("-- Please enter the ZIP code the plant you are posting for adoption is available in:");
-    string zipResponse = Console.ReadLine();
+    Console.WriteLine($"-- Please enter your {cityRes} ZIP code:");
+    string zipRes = Console.ReadLine();
+
+    // Ask for Year of listing expiry
+    Console.Clear();
+    Console.WriteLine("-- Please enter the Year that this listing will expire:");
+    int yearRes = int.Parse(Console.ReadLine().Trim());
+    
+    // Ask for Month of listing expiry
+    Console.Clear();
+    Console.WriteLine($"-- Please enter the Month (1-12) in {yearRes} that this listing will expire:");
+    int monthRes = int.Parse(Console.ReadLine().Trim());
+
+    // Ask for Day of listing expiry
+    Console.Clear();
+    Console.WriteLine("-- Please enter the Day of the month that this listing will expire:");
+    int dayRes = int.Parse(Console.ReadLine().Trim());
 
     // Create and add new object to Plants list
+    DateTime dateRes = new DateTime(yearRes, monthRes, dayRes);
     Plant plantToPost = new Plant()
     {
-        Species = speciesResponse,
-        LightNeeds = lightResponse,
-        AskingPrice = priceResponse,
-        City = cityResponse,
-        ZIP = zipResponse,
-        Sold = false
+        Species = speciesRes,
+        LightNeeds = lightRes,
+        AskingPrice = priceRes,
+        City = cityRes,
+        ZIP = zipRes,
+        Sold = false,
+        AvailableUntil = dateRes,
     };
     plants.Add(plantToPost);
     Console.Clear();
