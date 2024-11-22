@@ -265,7 +265,27 @@ void SearchPlantsByLightNeeds()
 
 void AppStatistics()
 {
-   throw new NotImplementedException();
+    // lowest priced plant
+    string cheapPlant = "";
 
-   
+    // number of plants available to adopt
+    int availablePlants = 0;
+
+    // plant with highest light needs
+    string needyPlant = "";
+
+    // average light needs
+    decimal avgLight = 0.0M;
+
+    // percentage of plants adopted
+    int adoptedPercentage = 0;
+
+    // Display statistics
+    Console.Clear();
+    Console.WriteLine("STATS");
+    Console.WriteLine($"Lowest price plant name:   {cheapPlant}");
+    Console.WriteLine($"Number of Plants Available:   {availablePlants}");
+    Console.WriteLine($"Name of plant with highest light needs:   {needyPlant}");
+    Console.WriteLine($"Average light needs:   {avgLight}");
+    Console.WriteLine($"Percentage of plants adopted:   {adoptedPercentage}");
 }
