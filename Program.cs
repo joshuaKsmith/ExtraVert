@@ -44,7 +44,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 12.00M,
         City = "Bowling Green",
         ZIP = "42101",
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2025, 10, 10)
     },
 };
 
@@ -199,7 +200,7 @@ void AdoptPlant()
     {
         if (plants[i].Sold == false && plants[i].AvailableUntil > DateTime.Now)
         {
-            Console.WriteLine($"{i+1}. {plants[i].Species}, available for {plants[i].AskingPrice} in {plants[i].City}.");
+            Console.WriteLine($"{i + 1}. {plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for {plants[i].AskingPrice} dollar{(plants[i].AskingPrice == 1 ? "" : "s")}");
         }
     }
 
