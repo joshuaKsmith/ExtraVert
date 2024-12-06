@@ -8,7 +8,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 10.50M,
         City = "Hopkinsville",
         ZIP = "42240",
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2023, 10, 10)
     },
     new Plant()
     {
@@ -17,7 +18,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 12.00M,
         City = "Hopkinsville",
         ZIP = "42240",
-        Sold = true
+        Sold = true,
+        AvailableUntil = new DateTime(2025, 10, 10)
     },
     new Plant()
     {
@@ -26,7 +28,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 15.00M,
         City = "Bowling Green",
         ZIP = "42101",
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2025, 10, 10)
     },
     new Plant()
     {
@@ -35,7 +38,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 10.00M,
         City = "Bowling Green",
         ZIP = "42101",
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2025, 10, 10)
     },
     new Plant()
     {
@@ -280,9 +284,24 @@ void AppStatistics()
 
     // number of plants available to adopt
     int availablePlants = 0;
+    foreach (Plant plant in plants)
+    {
+        if (plant.Sold == false && plant.AvailableUntil > DateTime.Now)
+        {
+            availablePlants++;
+        }
+    }
 
     // plant with highest light needs
-    string needyPlant = "";
+    int needyIndex = 0;
+    for (int i=0; i < plants.Count; i++)
+    {
+        if (plants[needyIndex].LightNeeds < plants[i].LightNeeds)
+        {
+            needyIndex = i;
+        }
+    }
+    string needyPlant = plants[needyIndex].Species;
 
     // average light needs
     decimal avgLight = 0.0M;
