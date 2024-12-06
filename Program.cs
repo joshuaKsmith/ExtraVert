@@ -312,7 +312,9 @@ void AppStatistics()
     decimal avgLight = lightNeedsTotal / plants.Count;
 
     // percentage of plants adopted
-    int adoptedPercentage = 0;
+    decimal availablePlantsAsDecimal = (decimal)availablePlants;
+    decimal adoptedDecimal = availablePlantsAsDecimal / plants.Count;
+    decimal adoptedPercentage = adoptedDecimal * 100;
 
     // Display statistics
     Console.Clear();
@@ -321,5 +323,5 @@ void AppStatistics()
     Console.WriteLine($"Number of Plants Available:   {availablePlants}");
     Console.WriteLine($"Name of plant with highest light needs:   {needyPlant}");
     Console.WriteLine($"Average light needs:   {avgLight}");
-    Console.WriteLine($"Percentage of plants adopted:   {adoptedPercentage}");
+    Console.WriteLine($"Percentage of plants adopted:   {adoptedPercentage}%");
 }
