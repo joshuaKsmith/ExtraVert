@@ -5,7 +5,7 @@ List<Plant> plants = new List<Plant>()
     {
         Species = "Peony",
         LightNeeds = 2,
-        AskingPrice = 10.00M,
+        AskingPrice = 10.50M,
         City = "Hopkinsville",
         ZIP = "42240",
         Sold = false
@@ -63,6 +63,7 @@ while (!validIndex)
     }
 }
 
+Console.Clear();
 Console.WriteLine(@"Welcome to ExtraVert FlowerShop
 AKA that one place");
 
@@ -267,7 +268,15 @@ void SearchPlantsByLightNeeds()
 void AppStatistics()
 {
     // lowest priced plant
-    string cheapPlant = "";
+    int cheapIndex = 0;
+    for (int i = 0; i < plants.Count; i++)
+    {
+        if (plants[cheapIndex].AskingPrice > plants[i].AskingPrice)
+        {
+            cheapIndex = i;
+        }
+    }
+    string cheapPlant = plants[cheapIndex].Species;
 
     // number of plants available to adopt
     int availablePlants = 0;
@@ -283,7 +292,7 @@ void AppStatistics()
 
     // Display statistics
     Console.Clear();
-    Console.WriteLine("STATS");
+    Console.WriteLine("--  STATS  --");
     Console.WriteLine($"Lowest price plant name:   {cheapPlant}");
     Console.WriteLine($"Number of Plants Available:   {availablePlants}");
     Console.WriteLine($"Name of plant with highest light needs:   {needyPlant}");
