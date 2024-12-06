@@ -34,7 +34,7 @@ List<Plant> plants = new List<Plant>()
     new Plant()
     {
         Species = "Tulip",
-        LightNeeds = 1,
+        LightNeeds = 2,
         AskingPrice = 10.00M,
         City = "Bowling Green",
         ZIP = "42101",
@@ -304,7 +304,12 @@ void AppStatistics()
     string needyPlant = plants[needyIndex].Species;
 
     // average light needs
-    decimal avgLight = 0.0M;
+    decimal lightNeedsTotal = 0.0M; 
+    foreach (Plant plant in plants)
+    {
+        lightNeedsTotal += plant.LightNeeds;
+    }
+    decimal avgLight = lightNeedsTotal / plants.Count;
 
     // percentage of plants adopted
     int adoptedPercentage = 0;
