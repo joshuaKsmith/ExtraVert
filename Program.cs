@@ -8,7 +8,7 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 10.50M,
         City = "Hopkinsville",
         ZIP = "42240",
-        Sold = false,
+        Sold = true,
         AvailableUntil = new DateTime(2023, 10, 10)
     },
     new Plant()
@@ -312,8 +312,16 @@ void AppStatistics()
     decimal avgLight = lightNeedsTotal / plants.Count;
 
     // percentage of plants adopted
-    decimal availablePlantsAsDecimal = (decimal)availablePlants;
-    decimal adoptedDecimal = availablePlantsAsDecimal / plants.Count;
+    int adoptedPlants = 0;
+    foreach (Plant plant in plants)
+    {
+        if (plant.Sold == true)
+        {
+            adoptedPlants++;
+        }
+    }
+    decimal adoptedPlantsAsDecimal = (decimal)adoptedPlants;
+    decimal adoptedDecimal = adoptedPlantsAsDecimal / plants.Count;
     decimal adoptedPercentage = adoptedDecimal * 100;
 
     // Display statistics
